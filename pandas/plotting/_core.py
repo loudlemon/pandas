@@ -606,7 +606,19 @@ class PlotAccessor(PandasObject):
         - 'pie' : pie plot
         - 'scatter' : scatter plot
         - 'hexbin' : hexbin plot.
-
+        
+    ax : matplotlib axes object, default True
+    subplots : boolean,default False
+        Make separate subplots for each column
+    sharex : boolean,default True if ax is None else False
+        In case subplots=True, share x axis an set some x axis labels to
+        invisible; defaults to True if zx is None otherwise False if an ax 
+        is passed in; Be aware, that passing in both an ax and sharex=True
+        will alter all x axis labels for all axis in a figure!
+    sharey : boolean, default False
+        In case subplots=True, share y axis and set some y axis labels to invisible
+    layout : tuple (optional)
+        (rows, columns) for the layout of subplots
     figsize : a tuple (width, height) in inches
     use_index : bool, default True
         Use index as ticks for x axis.
@@ -663,6 +675,13 @@ class PlotAccessor(PandasObject):
         detail.
     xerr : DataFrame, Series, array-like, dict and str
         Equivalent to yerr.
+    stacked : boolean, default False in line and bar plots, and True in area plot
+        If True, create stacked  plot.
+    sort_columns : boolean, default False
+        Sort columns names to determine plot ordering
+    secondary_y : boolean or sequence, default False
+        Whether to plot on the secondary y-axis If a list/tuple, which 
+        columns to plot on secondary y-axis
     mark_right : bool, default True
         When using a secondary_y axis, automatically mark the column
         labels with "(right)" in the legend.
